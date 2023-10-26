@@ -1,0 +1,29 @@
+--2023-10-26 12:55:29--  http://echo/
+Resolving echo (echo)... failed: Name or service not known.
+wget: unable to resolve host address ‘echo’
+--2023-10-26 12:55:44--  http://deb/
+Resolving deb (deb)... failed: Name or service not known.
+wget: unable to resolve host address ‘deb’
+http://[signed-by=/usr/share/keyrings/jenkins-keyring.asc]: Invalid IPv6 numeric address.
+--2023-10-26 12:55:54--  https://pkg.jenkins.io/debian
+Resolving pkg.jenkins.io (pkg.jenkins.io)... 146.75.118.133, 2a04:4e42:8d::645
+Connecting to pkg.jenkins.io (pkg.jenkins.io)|146.75.118.133|:443... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://pkg.origin.jenkins.io/debian/ [following]
+--2023-10-26 12:55:56--  https://pkg.origin.jenkins.io/debian/
+Resolving pkg.origin.jenkins.io (pkg.origin.jenkins.io)... 52.202.51.185
+Connecting to pkg.origin.jenkins.io (pkg.origin.jenkins.io)|52.202.51.185|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 6448 (6.3K) [text/html]
+Saving to: ‘/usr/share/keyrings/jenkins-keyring.asc’
+
+/usr/share/keyrings/jenkins-keyring.a   0%[                                                                        ]       0  --.-KB/s               /usr/share/keyrings/jenkins-keyring.a 100%[=======================================================================>]   6.30K  --.-KB/s    in 0s      
+
+2023-10-26 12:55:57 (197 MB/s) - ‘/usr/share/keyrings/jenkins-keyring.asc’ saved [6448/6448]
+
+--2023-10-26 12:55:57--  http://binary/
+Resolving binary (binary)... failed: Name or service not known.
+wget: unable to resolve host address ‘binary’
+FINISHED --2023-10-26 12:56:07--
+Total wall clock time: 38s
+Downloaded: 1 files, 6.3K in 0s (197 MB/s)

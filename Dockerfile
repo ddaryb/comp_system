@@ -14,6 +14,6 @@ COPY api.py .
 EXPOSE 5000
 
 # Start program
-CMD ["python", "api_calc.py"]
+CMD ["python", "api.py"]
 
 USER 1000
