@@ -8,7 +8,7 @@ RUN pip install Flask
 WORKDIR /app
 
 # Copy python's file to work directory
-COPY api_calc.py .
+COPY api.py .
 
 # Use 5000 port
 EXPOSE 5000
