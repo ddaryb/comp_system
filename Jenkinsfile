@@ -19,5 +19,45 @@ pipeline {
                 }
             }
         }
+         stage('Create dir reports, venv, download trivy template, install semgrep') {
+            steps {
+                script {
+                    sh '''#!/bin/bash 
+                    mkdir reports
+                    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl
+                    python -m venv venv
+                    source ./venv/bin/activate 
+                    pip install semgrep
+                    deactivate'''
+                }
+            }
+        }
+        stage('Security Scan with Trivy') {
+            steps {
+                script {
+                    sh 'trivy image --ignore-unfixed -f template --template "@html.tpl" -o ./reports/trivy-report.html --scanners vuln api:latest'
+                    publishHTML target : [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'trivy-report.html',
+                    reportName: 'Trivy Scan Vulns',
+                    reportTitles: 'Trivy Scan Vulns'
+                ]
+                    sh 'trivy image --ignore-unfixed --exit-code 1 --severity HIGH --security-checks vuln api:latest'
+                }
+            }
+        }
+        stage('Security Scan with Semgrep') {
+            steps {
+                script {
+                    sh './venv/bin/semgrep --config auto --junit-xml -o ./reports/semgrep-report.xml ./api.py'
+                    junit skipMarkingBuildUnstable: true, testResults: 'reports/semgrep-report.xml'
+                }
+            }
+        }
+    }
+}
     }
 }
